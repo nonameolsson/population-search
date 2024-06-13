@@ -2,10 +2,22 @@
 	import { enhance } from '$app/forms';
 	import { Alert, Button, Checkbox, Heading, Navbar, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
+
 	export let data: PageData;
+
 	let error: string | null = null;
 	let population: number = 0;
 	let loading: boolean = false;
+
+	function selectAll(listName: 'regions' | 'countries') {
+		const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+			`input[name="${listName}"]`
+		);
+
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = true;
+		});
+	}
 </script>
 
 <div class="container px-4">
@@ -16,7 +28,6 @@
 	</Navbar>
 
 	<form
-		class="grid gap-6 mb-6 grid-cols-2"
 		method="POST"
 		action="?/search"
 		use:enhance={({ formElement, formData, action, cancel, submitter }) => {
@@ -44,38 +55,43 @@
 			};
 		}}
 	>
-		<div>
-			<Heading tag="h4">Kommuner</Heading>
+		<div class="mb-6 grid grid-cols-2 gap-6">
 			<div>
-				{#each data.regions as region}
-					<Checkbox id={region.name} value={region.id} name="regions" type="checkbox">
-						{region.name}
-					</Checkbox>
-				{/each}
+				<Heading tag="h4">Kommuner</Heading>
+				<div>
+					{#each data.regions as region}
+						<Checkbox id={region.name} value={region.id} name="regions" type="checkbox">
+							{region.name}
+						</Checkbox>
+					{/each}
+				</div>
+				<Button color="green" class="mt-4" size="sm" on:click={() => selectAll('regions')}
+					>Select all</Button
+				>
+			</div>
+
+			<div>
+				<Heading tag="h4">Länder</Heading>
+
+				<div>
+					{#each data.countries as country}
+						<Checkbox id={country.name} value={country.id} name="countries" type="checkbox">
+							{country.name}
+						</Checkbox>
+					{/each}
+					<Button size="sm" class="mt-4" color="green" on:click={() => selectAll('countries')}
+						>Select all</Button
+					>
+				</div>
 			</div>
 		</div>
-
-		<div>
-			<Heading tag="h4">Länder</Heading>
-
-			<div>
-				{#each data.countries as country}
-					<Checkbox id={country.name} value={country.id} name="countries" type="checkbox">
-						{country.name}
-					</Checkbox>
-				{/each}
-			</div>
-		</div>
-
-		<div>
-			<Button disabled={loading} class="w-full" type="submit" color="light">
-				{#if loading}
-					<Spinner color="green" />
-				{:else}
-					Sök
-				{/if}
-			</Button>
-		</div>
+		<Button disabled={loading} class="mb-4 w-full" type="submit" color="light">
+			{#if loading}
+				<Spinner color="green" />
+			{:else}
+				Sök
+			{/if}
+		</Button>
 	</form>
 
 	{#if error}
