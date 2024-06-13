@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Checkbox, Heading, Label } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-
 	export let data: PageData;
 	let error: string | null = null;
 	let population: number = 0;
 </script>
 
-<h1>Latino Counter</h1>
+<Heading>Latino Counter</Heading>
 
-{population}
 <form
+	class="grid gap-6 mb-6 md:grid-cols-2"
 	method="POST"
 	action="?/search"
 	use:enhance={({ formElement, formData, action, cancel, submitter }) => {
@@ -38,14 +38,12 @@
 >
 	<fieldset>
 		<legend>Kommuner</legend>
-		<ul>
+		<div>
 			{#each data.regions as region}
-				<li>
-					<input id={region.name} value={region.id} name="regions" type="checkbox" />
-					<label for={region.name}>{region.name}</label>
-				</li>
+				<Checkbox id={region.name} value={region.id} name="regions" type="checkbox" />
+				<Label for={region.name}>{region.name}</Label>
 			{/each}
-		</ul>
+		</div>
 	</fieldset>
 
 	<fieldset>
