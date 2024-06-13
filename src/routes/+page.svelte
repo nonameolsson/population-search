@@ -14,8 +14,21 @@
 			`input[name="${listName}"]`
 		);
 
+		const allAreChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+		if (allAreChecked) {
+			checkboxes.forEach((checkbox) => {
+				checkbox.checked = !checkbox.checked;
+			});
+
+			return;
+		}
+
 		checkboxes.forEach((checkbox) => {
-			checkbox.checked = true;
+			if (checkbox.checked) {
+				return;
+			}
+
+			checkbox.checked = !checkbox.checked;
 		});
 	}
 </script>
@@ -66,7 +79,7 @@
 					{/each}
 				</div>
 				<Button color="green" class="mt-4" size="sm" on:click={() => selectAll('regions')}
-					>Select all</Button
+					>Välj alla</Button
 				>
 			</div>
 
