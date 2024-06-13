@@ -84,7 +84,5 @@
 		</Alert>
 	{/if}
 
-	{#if population}
-		<Alert color="green">Befolkning: {population}</Alert>
-	{/if}
+	<Alert color="green">Befolkning: {population}</Alert>
 </div>
