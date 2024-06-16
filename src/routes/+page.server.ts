@@ -16,25 +16,39 @@ export const load: PageServerLoad = () => {
 
 	regions.sort((a, b) => a.name.localeCompare(b.name));
 
-	const countries = [
-		{ id: 'AR', name: 'Argentina' },
-		{ id: 'BO', name: 'Bolivia' },
-		{ id: 'CL', name: 'Chile' },
-		{ id: 'CO', name: 'Colombia' },
-		{ id: 'CR', name: 'Costa Rica' },
-		{ id: 'EC', name: 'Ecuador' },
-		{ id: 'SV', name: 'El Salvador' },
-		{ id: 'GT', name: 'Guatemala' },
-		{ id: 'HN', name: 'Honduras' },
-		{ id: 'NI', name: 'Nicaragua' },
-		{ id: 'PA', name: 'Panamá' },
-		{ id: 'PY', name: 'Paraguay' },
-		{ id: 'PE', name: 'Perú' },
-		{ id: 'UY', name: 'Uruguay' },
-		{ id: 'VE', name: 'Venezuela' }
-	];
+	const countries = {
+		spanish: [
+			{ id: 'AO', name: 'Angola' },
+			{ id: 'DO', name: 'Dominikanska Republiken' },
+			{ id: 'GQ', name: 'Ekvatorialguinea' },
+			{ id: 'CU', name: 'Kuba' },
+			{ id: 'MX', name: 'Mexiko' },
+			{ id: 'ES', name: 'Spanien' },
+			{ id: 'AR', name: 'Argentina' },
+			{ id: 'BO', name: 'Bolivia' },
+			{ id: 'CL', name: 'Chile' },
+			{ id: 'CO', name: 'Colombia' },
+			{ id: 'CR', name: 'Costa Rica' },
+			{ id: 'EC', name: 'Ecuador' },
+			{ id: 'SV', name: 'El Salvador' },
+			{ id: 'GT', name: 'Guatemala' },
+			{ id: 'HN', name: 'Honduras' },
+			{ id: 'NI', name: 'Nicaragua' },
+			{ id: 'PA', name: 'Panamá' },
+			{ id: 'PY', name: 'Paraguay' },
+			{ id: 'PE', name: 'Perú' },
+			{ id: 'UY', name: 'Uruguay' },
+			{ id: 'VE', name: 'Venezuela' }
+		],
+		portuguese: [
+			{ id: 'BR', name: 'Brasilien' },
+			{ id: 'PT', name: 'Portugal' },
+			{ id: 'CV', name: 'Kap Verde' }
+		]
+	};
 
-	countries.sort((a, b) => a.name.localeCompare(b.name));
+	countries.spanish.sort((a, b) => a.name.localeCompare(b.name));
+	countries.portuguese.sort((a, b) => a.name.localeCompare(b.name));
 
 	return {
 		regions,

@@ -70,7 +70,7 @@
 	>
 		<div class="mb-6 grid grid-cols-2 gap-6">
 			<div>
-				<Heading tag="h4">Kommuner</Heading>
+				<Heading tag="h3">Kommuner</Heading>
 				<div>
 					{#each data.regions as region}
 						<Checkbox id={region.name} value={region.id} name="regions" type="checkbox">
@@ -84,18 +84,27 @@
 			</div>
 
 			<div>
-				<Heading tag="h4">Länder</Heading>
+				<Heading tag="h3">Länder</Heading>
 
 				<div>
-					{#each data.countries as country}
+					<Heading tag="h5">Spanska</Heading>
+					{#each data.countries.spanish as country}
 						<Checkbox id={country.name} value={country.id} name="countries" type="checkbox">
 							{country.name}
 						</Checkbox>
 					{/each}
-					<Button size="sm" class="mt-4" color="green" on:click={() => selectAll('countries')}
-						>Välj alla</Button
-					>
 				</div>
+				<div>
+					<Heading class="mt-4" tag="h5">Portugisiska</Heading>
+					{#each data.countries.portuguese as country}
+						<Checkbox id={country.name} value={country.id} name="countries" type="checkbox">
+							{country.name}
+						</Checkbox>
+					{/each}
+				</div>
+				<Button size="sm" class="mt-4" color="green" on:click={() => selectAll('countries')}
+					>Välj alla</Button
+				>
 			</div>
 		</div>
 		<Button disabled={loading} class="mb-4 w-full" type="submit" color="light">
