@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Alert, Button, Checkbox, Heading, Navbar, Spinner } from 'flowbite-svelte';
+	import { Alert, Button, Checkbox, Heading, Input, Label, Navbar, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -8,6 +8,8 @@
 	let error: string | null = null;
 	let population: number = 0;
 	let loading: boolean = false;
+	let numberOfPublishers: number = 0;
+	$: publishersPerPopulation = Math.floor(population / numberOfPublishers);
 
 	function selectAll(listName: 'regions' | 'countries') {
 		const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
@@ -115,6 +117,8 @@
 			{/if}
 		</Button>
 	</form>
+	<Label>Antal förkunnare</Label>
+	<Input bind:value={numberOfPublishers} type="number" class="mb-4" />
 
 	{#if error}
 		<Alert color="red">
@@ -122,5 +126,12 @@
 		</Alert>
 	{/if}
 
-	<Alert color="green">Befolkning: {population}</Alert>
+	{#if population}
+		<Alert color="green">
+			<p>Befolkning: {population}</p>
+			{#if numberOfPublishers > 0}
+				<p>Besök per förkunnare: {publishersPerPopulation}</p>
+			{/if}
+		</Alert>
+	{/if}
 </div>
