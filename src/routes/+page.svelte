@@ -93,7 +93,7 @@
 						</Checkbox>
 					{/each}
 					<Button size="sm" class="mt-4" color="green" on:click={() => selectAll('countries')}
-						>Select all</Button
+						>Välj alla</Button
 					>
 				</div>
 			</div>

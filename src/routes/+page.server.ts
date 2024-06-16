@@ -5,8 +5,16 @@ export const load: PageServerLoad = () => {
 	const regions = [
 		{ id: '1231', name: 'Burlöv' },
 		{ id: '1281', name: 'Lund' },
-		{ id: '1280', name: 'Malmö' }
+		{ id: '1280', name: 'Malmö' },
+		{ id: '1262', name: 'Lomma' },
+		{ id: '1230', name: 'Staffanstorp' },
+		{ id: '1263', name: 'Svedala' },
+		{ id: '1233', name: 'Vellinge' },
+		{ id: '1287', name: 'Trelleborg' },
+		{ id: '1261', name: 'Kävlinge' }
 	];
+
+	regions.sort((a, b) => a.name.localeCompare(b.name));
 
 	const countries = [
 		{ id: 'AR', name: 'Argentina' },
@@ -25,6 +33,8 @@ export const load: PageServerLoad = () => {
 		{ id: 'UY', name: 'Uruguay' },
 		{ id: 'VE', name: 'Venezuela' }
 	];
+
+	countries.sort((a, b) => a.name.localeCompare(b.name));
 
 	return {
 		regions,
